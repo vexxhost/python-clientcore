@@ -108,8 +108,14 @@ class UnprocessableEntity(ClientException, ks_http.UnprocessableEntity):
     pass
 
 
-class TooManyRequests(ClientException, ks_http.TooManyRequests):
-    pass
+# keystoneauth1 only gained TooManyRequests in later releases.
+_KsTooManyRequests = getattr(
+    ks_http, "TooManyRequests", ks_http.HTTPClientError
+)
+
+
+class TooManyRequests(ClientException, _KsTooManyRequests):
+    http_status = 429
 
 
 class InternalServerError(ClientException, ks_http.InternalServerError):

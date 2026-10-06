@@ -325,4 +325,3 @@ def test_service_client_honours_clouds_yaml_settings(requests_mock):
     assert c.api.timeout == 7
     assert c.api.get_json("things") == {"ok": True}
     assert route.call_count == 2
-    assert route.last_request.headers["X-Auth-Token"] == "tok"

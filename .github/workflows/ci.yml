@@ -17,3 +17,10 @@ jobs:
       - run: ruff check . && ruff format --check .
       - run: pytest
       - run: python -m build
+  minimum-dependencies:
+    # Catches use of anything newer than the lower bounds pyproject.toml declares.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+      - run: uv run --python 3.10 --resolution lowest-direct --extra test pytest

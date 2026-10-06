@@ -42,15 +42,17 @@ commands, generated models and tests.
 # exampleclient/v1/client.py
 from vexxhost_clientcore.client import ServiceClient
 
+
 class Client(ServiceClient):
-    service_type = "example"             # Keystone catalog type
-    title = "Example"                    # used in error messages
+    service_type = "example"  # Keystone catalog type
+    title = "Example"  # used in error messages
     endpoint_option = "--os-example-endpoint"
     client_name = "vexxhost-exampleclient"
     client_version = "0.1.0"
 
     def setup(self, http_client):
         self.things = ThingManager(http_client)
+
 
 class ThingManager:
     def __init__(self, api):
