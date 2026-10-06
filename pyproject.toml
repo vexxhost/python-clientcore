@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vexxhost-clientcore"
+version = "0.1.0"
+description = "Shared transport, errors and OpenStack CLI plumbing for VEXXHOST API clients"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "VEXXHOST"}]
+license = "Apache-2.0"
+dependencies = [
+    "keystoneauth1>=5.3",
+    "osc-lib>=3.0",
+    "typing_extensions>=4.7",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "requests-mock>=1.12"]
+
+[project.urls]
+Repository = "https://github.com/vexxhost/python-clientcore"
+
+[tool.setuptools.packages.find]
+include = ["vexxhost_clientcore*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+select = ["F", "I"]
